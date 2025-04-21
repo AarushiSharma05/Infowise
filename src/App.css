@@ -1,0 +1,164 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 100%;
+  background: #0E0E0E;
+}
+
+.messages {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  scrollbar-width: thin;
+  scrollbar-color: #333 #1a1a1a;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.messages .userMsg {
+  background-color: #1E1E1E;
+  padding: 1.25rem;
+  border-radius: 1rem;
+  max-width: 85%;
+  width: fit-content;
+  align-self: flex-end;
+  margin: 0.5rem 0;
+  word-break: break-word;
+  border: 1px solid #2A2A2A;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.messages .responseMsg {
+  background-color: #1A1A1A;
+  padding: 1.25rem;
+  border-radius: 1rem;
+  max-width: 85%;
+  width: fit-content;
+  align-self: flex-start;
+  margin: 0.5rem 0;
+  word-break: break-word;
+  border: 1px solid #2A2A2A;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+@media (min-width: 768px) {
+  .messages .userMsg,
+  .messages .responseMsg {
+    max-width: 70%;
+  }
+}
+
+/* Code block styles */
+pre {
+  margin: 1rem 0;
+  border-radius: 0.75rem;
+  background: #2a2a2a !important;
+  overflow-x: auto;
+  max-width: 100%;
+  padding: 1rem;
+  border: 1px solid #333;
+}
+
+code {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* Scrollbar styles */
+.messages::-webkit-scrollbar {
+  width: 6px;
+}
+
+.messages::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+.messages::-webkit-scrollbar-thumb {
+  background-color: #333;
+  border-radius: 3px;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.userMsg, .responseMsg {
+  animation: fadeIn 0.2s ease-out;
+}
+
+/* Mobile optimizations */
+@media (max-width: 640px) {
+  .messages {
+    gap: 0.75rem;
+    padding-bottom: calc(env(safe-area-inset-bottom) + 80px);
+  }
+
+  .messages .userMsg,
+  .messages .responseMsg {
+    padding: 1rem;
+    max-width: 90%;
+  }
+
+  pre {
+    margin: 0.75rem 0;
+    font-size: 0.85rem;
+    padding: 0.75rem;
+  }
+
+  code {
+    font-size: 0.85rem;
+  }
+}
+
+/* Typography styles */
+.prose {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.prose p {
+  margin-bottom: 1rem;
+}
+
+.prose ul,
+.prose ol {
+  margin-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.prose li {
+  margin-bottom: 0.5rem;
+}
+
+.prose strong {
+  color: #fff;
+  font-weight: 600;
+}
+
+.prose em {
+  color: #fff;
+}
+
+/* Fix iOS bottom safe area */
+@supports (padding: max(0px)) {
+  .messages {
+    padding-bottom: max(env(safe-area-inset-bottom), 80px);
+  }
+}
