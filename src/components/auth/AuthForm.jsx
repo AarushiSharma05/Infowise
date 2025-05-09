@@ -1,40 +1,46 @@
-import React from 'react';
-import { z } from 'zod';
-import { toast } from 'sonner';
-import { useForm, FormProvider } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useNavigate } from 'react-router-dom';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../../config/firebase';
-import { createUserProfile } from '../../services/userService';
-import FormField from '../FormField';
-import { FaUser, FaEnvelope, FaLock } from 'react-icons/fa';
+import React from "react";
+import { z } from "zod";
+import { toast } from "sonner";
+import { useForm, FormProvider } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useNavigate } from "react-router-dom";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { auth } from "../../config/firebase";
+import { createUserProfile } from "../../services/userService";
+import FormField from "../FormField";
+import { FaUser, FaEnvelope, FaLock } from "react-icons/fa";
 
 const authFormSchema = (type) => {
   return z.object({
-    name: type === 'sign-up' ? z.string().min(3, 'Name must be at least 3 characters') : z.string().optional(),
-    email: z.string().email('Invalid email address'),
-    password: z.string().min(6, 'Password must be at least 6 characters'),
+    name:
+      type === "sign-up"
+        ? z.string().min(3, "Name must be at least 3 characters")
+        : z.string().optional(),
+    email: z.string().email("Invalid email address"),
+    password: z.string().min(6, "Password must be at least 6 characters"),
   });
 };
 
 const AuthForm = ({ type }) => {
   const navigate = useNavigate();
-  const isSignIn = type === 'sign-in';
+  const isSignIn = type === "sign-in";
 
   const formSchema = authFormSchema(type);
   const methods = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: '',
-      email: '',
-      password: '',
+      name: "",
+      email: "",
+      password: "",
     },
   });
 
   const onSubmit = async (data) => {
     try {
-      if (type === 'sign-up') {
+      if (type === "sign-up") {
         const { name, email, password } = data;
 
         try {
@@ -48,18 +54,22 @@ const AuthForm = ({ type }) => {
           // Store additional user data in Firestore
           await createUserProfile(userCredential.user.uid, {
             name,
-            email
+            email,
           });
 
           // Sign out the user immediately after account creation
           await auth.signOut();
 
-          toast.success('Account created successfully! Please sign in to continue.');
-          navigate('/sign-in');
+          toast.success(
+            "Account created successfully! Please sign in to continue."
+          );
+          navigate("/sign-in");
         } catch (error) {
-          if (error.code === 'auth/email-already-in-use') {
-            toast.error('This email is already registered. Please sign in instead.');
-            navigate('/sign-in');
+          if (error.code === "auth/email-already-in-use") {
+            toast.error(
+              "This email is already registered. Please sign in instead."
+            );
+            navigate("/sign-in");
             return;
           }
           throw error;
@@ -69,16 +79,18 @@ const AuthForm = ({ type }) => {
 
         try {
           await signInWithEmailAndPassword(auth, email, password);
-          toast.success('Signed in successfully.');
-          navigate('/');
+          toast.success("Signed in successfully.");
+          navigate("/");
         } catch (error) {
-          if (error.code === 'auth/user-not-found') {
-            toast.error('No account found with this email. Please sign up first.');
-            navigate('/sign-up');
+          if (error.code === "auth/user-not-found") {
+            toast.error(
+              "No account found with this email. Please sign up first."
+            );
+            navigate("/sign-up");
             return;
           }
-          if (error.code === 'auth/wrong-password') {
-            toast.error('Incorrect password. Please try again.');
+          if (error.code === "auth/wrong-password") {
+            toast.error("Incorrect password. Please try again.");
             return;
           }
           throw error;
@@ -86,7 +98,7 @@ const AuthForm = ({ type }) => {
       }
     } catch (error) {
       console.error(error);
-      toast.error(error.message || 'An error occurred. Please try again.');
+      toast.error(error.message || "An error occurred. Please try again.");
     }
   };
 
@@ -95,12 +107,12 @@ const AuthForm = ({ type }) => {
       <div className="bg-[#181818] p-8 rounded-2xl shadow-xl w-full max-w-md border border-gray-800">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-white mb-2">
-            {isSignIn ? 'Welcome Back!' : 'Create Account'}
+            {isSignIn ? "Welcome Back!" : "Create Account"}
           </h1>
           <p className="text-gray-400">
-            {isSignIn 
-              ? 'Sign in to continue your conversation' 
-              : 'Join us to start chatting with AI'}
+            {isSignIn
+              ? "Sign in to continue your conversation"
+              : "Join us to start chatting with AI"}
           </p>
         </div>
 
@@ -142,7 +154,7 @@ const AuthForm = ({ type }) => {
               type="submit"
               className="w-full bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 transition-colors duration-200 font-medium text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-[#181818]"
             >
-              {isSignIn ? 'Sign In' : 'Create Account'}
+              {isSignIn ? "Sign In" : "Create Account"}
             </button>
           </form>
         </FormProvider>
@@ -151,10 +163,10 @@ const AuthForm = ({ type }) => {
           <p className="text-center text-gray-400">
             {isSignIn ? "Don't have an account?" : "Already have an account?"}
             <button
-              onClick={() => navigate(isSignIn ? '/sign-up' : '/sign-in')}
+              onClick={() => navigate(isSignIn ? "/sign-up" : "/sign-in")}
               className="ml-2 text-blue-500 hover:text-blue-400 font-medium transition-colors duration-200"
             >
-              {isSignIn ? 'Sign Up' : 'Sign In'}
+              {isSignIn ? "Sign Up" : "Sign In"}
             </button>
           </p>
         </div>
@@ -163,4 +175,4 @@ const AuthForm = ({ type }) => {
   );
 };
 
-export default AuthForm; 
+export default AuthForm;

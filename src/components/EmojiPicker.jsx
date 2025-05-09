@@ -1,6 +1,6 @@
-import React from 'react';
-import data from '@emoji-mart/data';
-import Picker from '@emoji-mart/react';
+import React from "react";
+import data from "@emoji-mart/data";
+import Picker from "@emoji-mart/react";
 
 const EmojiPicker = ({ onSelect, show, onClose }) => {
   if (!show) return null;
@@ -14,7 +14,7 @@ const EmojiPicker = ({ onSelect, show, onClose }) => {
       <div className="relative">
         <div className="absolute -bottom-2 left-4 w-4 h-4 bg-[#181818] transform rotate-45" />
         <div className="bg-[#181818] rounded-lg shadow-lg p-2">
-          <Picker 
+          <Picker
             data={data}
             onEmojiSelect={handleEmojiSelect}
             theme="dark"
@@ -29,4 +29,4 @@ const EmojiPicker = ({ onSelect, show, onClose }) => {
   );
 };
 
-export default EmojiPicker; 
+export default EmojiPicker;

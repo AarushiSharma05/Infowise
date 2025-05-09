@@ -1,9 +1,12 @@
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { vscDarkPlus, prism } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import { useState } from 'react';
-import { IoCopyOutline, IoCheckmark } from 'react-icons/io5';
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import {
+  vscDarkPlus,
+  prism,
+} from "react-syntax-highlighter/dist/esm/styles/prism";
+import { useState } from "react";
+import { IoCopyOutline, IoCheckmark } from "react-icons/io5";
 
-const CodeBlock = ({ code, language = 'javascript', theme = 'dark' }) => {
+const CodeBlock = ({ code, language = "javascript", theme = "dark" }) => {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = () => {
@@ -32,13 +35,13 @@ const CodeBlock = ({ code, language = 'javascript', theme = 'dark' }) => {
 
       <SyntaxHighlighter
         language={language}
-        style={theme === 'dark' ? vscDarkPlus : prism}
+        style={theme === "dark" ? vscDarkPlus : prism}
         customStyle={{
           margin: 0,
-          padding: '1rem',
-          fontSize: '0.875rem',
-          lineHeight: '1.5',
-          background: 'transparent',
+          padding: "1rem",
+          fontSize: "0.875rem",
+          lineHeight: "1.5",
+          background: "transparent",
         }}
         showLineNumbers
       >

@@ -1,8 +1,8 @@
-import { IoSend } from 'react-icons/io5';
-import { FaRegSmile } from 'react-icons/fa';
-import React, { useRef, useState } from 'react';
-import EmojiPicker from './EmojiPicker';
-import ChatTextArea from './ChatTextArea';
+import { IoSend } from "react-icons/io5";
+import { FaRegSmile } from "react-icons/fa";
+import React, { useRef, useState } from "react";
+import EmojiPicker from "./EmojiPicker";
+import ChatTextArea from "./ChatTextArea";
 
 const ChatInput = ({ message, setMessage, handleSend }) => {
   const bottomRef = useRef(null);
@@ -14,7 +14,7 @@ const ChatInput = ({ message, setMessage, handleSend }) => {
   };
 
   const scrollToBottom = () => {
-    bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   const handleMessageSend = () => {
@@ -25,11 +25,12 @@ const ChatInput = ({ message, setMessage, handleSend }) => {
 
   return (
     <div className="fixed bottom-0 left-0 right-0 transparent px-4 py-1 z-40 border-t border-none  ml-40">
+      {/* <div className="fixed bottom-0 left-0 right-0 bg-[#0E0E0E] px-4 py-3 z-40 border-t border-gray-800"> */}
       <div className="max-w-4xl mx-auto">
         {/* Emoji Picker */}
         {showEmojiPicker && (
           <div className="relative mb-2">
-            <EmojiPicker 
+            <EmojiPicker
               show={showEmojiPicker}
               onSelect={handleEmojiSelect}
               onClose={() => setShowEmojiPicker(false)}
@@ -49,7 +50,7 @@ const ChatInput = ({ message, setMessage, handleSend }) => {
             </button>
 
             {/* Message Input */}
-            <ChatTextArea 
+            <ChatTextArea
               message={message}
               setMessage={setMessage}
               handleSend={handleMessageSend}
@@ -61,8 +62,8 @@ const ChatInput = ({ message, setMessage, handleSend }) => {
               disabled={!message.trim()}
               className={`p-2 rounded-full transition-all duration-200 ${
                 message.trim()
-                  ? 'text-green-500 hover:bg-[#2a2a2a]'
-                  : 'text-gray-400 cursor-not-allowed'
+                  ? "text-green-500 hover:bg-[#2a2a2a]"
+                  : "text-gray-400 cursor-not-allowed"
               }`}
             >
               <IoSend size={20} />

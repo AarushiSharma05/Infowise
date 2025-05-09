@@ -15,7 +15,9 @@ const Loader = ({ loading, message = "Thinking..." }) => {
             visible={true}
           />
         </div>
-        <p className="text-blue-300 text-sm font-medium animate-pulse">{message}</p>
+        <p className="text-blue-300 text-sm font-medium animate-pulse">
+          {message}
+        </p>
       </div>
     </div>
   );

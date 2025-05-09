@@ -1,15 +1,16 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   overflow: hidden;
   height: 100%;
-  background: #0E0E0E;
+  background: #0e0e0e;
 }
 
 .messages {
@@ -22,7 +23,7 @@ html, body {
 }
 
 .messages .userMsg {
-  background-color: #1E1E1E;
+  background-color: #1e1e1e;
   padding: 1.25rem;
   border-radius: 1rem;
   max-width: 85%;
@@ -30,12 +31,12 @@ html, body {
   align-self: flex-end;
   margin: 0.5rem 0;
   word-break: break-word;
-  border: 1px solid #2A2A2A;
+  border: 1px solid #2a2a2a;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .messages .responseMsg {
-  background-color: #1A1A1A;
+  background-color: #1a1a1a;
   padding: 1.25rem;
   border-radius: 1rem;
   max-width: 85%;
@@ -43,7 +44,7 @@ html, body {
   align-self: flex-start;
   margin: 0.5rem 0;
   word-break: break-word;
-  border: 1px solid #2A2A2A;
+  border: 1px solid #2a2a2a;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -66,7 +67,7 @@ pre {
 }
 
 code {
-  font-family: 'Fira Code', monospace;
+  font-family: "Fira Code", monospace;
   font-size: 0.9rem;
   line-height: 1.5;
   white-space: pre-wrap;
@@ -99,7 +100,8 @@ code {
   }
 }
 
-.userMsg, .responseMsg {
+.userMsg,
+.responseMsg {
   animation: fadeIn 0.2s ease-out;
 }
 
