@@ -1,54 +1,51 @@
+import typography from "@tailwindcss/typography";
+
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
       animation: {
-        'spin-slow': 'spin 2s linear infinite',
+        "spin-slow": "spin 2s linear infinite",
       },
       typography: {
         DEFAULT: {
           css: {
-            color: '#fff',
+            color: "#fff",
             strong: {
-              color: '#fff',
+              color: "#fff",
             },
             em: {
-              color: '#fff',
+              color: "#fff",
             },
             h1: {
-              color: '#fff',
+              color: "#fff",
             },
             h2: {
-              color: '#fff',
+              color: "#fff",
             },
             h3: {
-              color: '#fff',
+              color: "#fff",
             },
             h4: {
-              color: '#fff',
+              color: "#fff",
             },
             code: {
-              color: '#fff',
+              color: "#fff",
             },
             blockquote: {
-              color: '#fff',
+              color: "#fff",
             },
-            'ol > li::marker': {
-              color: '#fff',
+            "ol > li::marker": {
+              color: "#fff",
             },
-            'ul > li::marker': {
-              color: '#fff',
+            "ul > li::marker": {
+              color: "#fff",
             },
           },
         },
       },
     },
   },
-  plugins: [
-    require('@tailwindcss/typography'),
-  ],
-}
+  plugins: [typography],
+};

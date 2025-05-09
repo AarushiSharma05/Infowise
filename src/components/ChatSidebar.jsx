@@ -1,8 +1,14 @@
+import React from "react";
+import { IoAddCircle, IoMenu, IoClose } from "react-icons/io5";
 
-import React from 'react';
-import { IoAddCircle, IoMenu, IoClose } from 'react-icons/io5';
-
-const ChatSidebar = ({ chats, currentChatId, onChatSelect, onNewChat, isOpen, onToggle }) => (
+const ChatSidebar = ({
+  chats,
+  currentChatId,
+  onChatSelect,
+  onNewChat,
+  isOpen,
+  onToggle,
+}) => (
   <>
     {/* Mobile Menu Button */}
     <button
@@ -13,8 +19,9 @@ const ChatSidebar = ({ chats, currentChatId, onChatSelect, onNewChat, isOpen, on
     </button>
 
     {/* Sidebar */}
-    <div className={`fixed top-0 left-0 h-screen bg-[#121212] text-white border-r border-gray-800 z-40 transition-transform duration-300 ease-in-out 
-      ${isOpen ? 'translate-x-0' : '-translate-x-full'} 
+    <div
+      className={`fixed top-0 left-0 h-screen bg-[#121212] text-white border-r border-gray-800 z-40 transition-transform duration-300 ease-in-out 
+      ${isOpen ? "translate-x-0" : "-translate-x-full"} 
       lg:translate-x-0 lg:relative lg:w-72`}
     >
       <div className="flex flex-col h-full p-4 space-y-4">
@@ -29,7 +36,7 @@ const ChatSidebar = ({ chats, currentChatId, onChatSelect, onNewChat, isOpen, on
 
         {/* Chats List */}
         <div className="flex-1 overflow-y-auto space-y-2 scrollbar-thin scrollbar-thumb-[#333] scrollbar-track-transparent">
-          {chats.map(chat => (
+          {chats.map((chat) => (
             <button
               key={chat.id}
               onClick={() => {
@@ -37,9 +44,11 @@ const ChatSidebar = ({ chats, currentChatId, onChatSelect, onNewChat, isOpen, on
                 if (window.innerWidth < 1024) onToggle();
               }}
               className={`w-full text-left px-4 py-3 rounded-xl text-sm truncate transition-all 
-                ${chat.id === currentChatId
-                  ? 'bg-[#2a2a2a] text-white'
-                  : 'text-gray-300 hover:bg-[#1f1f1f] hover:text-white'}`}
+                ${
+                  chat.id === currentChatId
+                    ? "bg-[#2a2a2a] text-white"
+                    : "text-gray-300 hover:bg-[#1f1f1f] hover:text-white"
+                }`}
             >
               {chat.title}
             </button>

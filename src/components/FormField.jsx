@@ -1,8 +1,18 @@
-import React from 'react';
-import { useFormContext } from 'react-hook-form';
+import React from "react";
+import { useFormContext } from "react-hook-form";
 
-const FormField = ({ name, label, type = 'text', placeholder, icon, required = false }) => {
-  const { register, formState: { errors } } = useFormContext();
+const FormField = ({
+  name,
+  label,
+  type = "text",
+  placeholder,
+  icon,
+  required = false,
+}) => {
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext();
 
   const hasError = !!errors[name];
 
@@ -26,12 +36,12 @@ const FormField = ({ name, label, type = 'text', placeholder, icon, required = f
           placeholder={placeholder}
           aria-invalid={hasError}
           className={`
-            w-full py-3 ${icon ? 'pl-10' : 'pl-4'} pr-4
+            w-full py-3 ${icon ? "pl-10" : "pl-4"} pr-4
             bg-[#1a1a1a] border rounded-lg
             text-white placeholder-gray-400
             focus:outline-none focus:ring-2 focus:ring-blue-500
             transition-all duration-200
-            ${hasError ? 'border-red-500' : 'border-gray-700'}
+            ${hasError ? "border-red-500" : "border-gray-700"}
             sm:text-base md:text-lg
             sm:px-4 md:px-6
             lg:px-8
